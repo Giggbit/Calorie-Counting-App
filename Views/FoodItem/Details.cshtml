@@ -1,0 +1,50 @@
+﻿@model CalorieCountingApp.Models.FoodItem
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>FoodItem / 100g.</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Fats)
+        </dt>
+        <dd class="col-sm-10">
+            <div class="d-flex">
+                @Html.DisplayFor(model => model.Fats)
+                <p>g.</p>
+            </div>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Proteins)
+        </dt>
+        <dd class="col-sm-10">
+            <div class="d-flex">
+                @Html.DisplayFor(model => model.Proteins)
+                <p>g.</p>
+            </div>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Calories)
+        </dt>
+        <dd class="col-sm-10">
+            <div class="d-flex">
+                @Html.DisplayFor(model => model.Calories)
+                <p>cal</p>
+            </div>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

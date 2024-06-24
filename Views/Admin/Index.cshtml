@@ -1,0 +1,26 @@
+﻿@model IEnumerable<CalorieCountingApp.Models.FoodItem>
+
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<h1 class="text-center mb-4">@ViewData["Title"]</h1>
+
+<div class="row justify-content-center">
+    <div class="col-4">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <a class="nav-link" asp-action="ListOfProducts">Show al products item</a>
+            </li>
+            <li class="list-group-item">A second item</li>
+            <li class="list-group-item">A third item</li>
+            <li class="list-group-item">
+                <a class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" asp-action="Logout">Exit</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+
+
