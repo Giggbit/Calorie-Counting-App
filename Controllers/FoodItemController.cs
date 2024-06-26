@@ -37,7 +37,6 @@ namespace CalorieCountingApp.Controllers
             return View(pagedList);
         }
 
-
         public async Task<IActionResult> Details(int? id) {
             if (id == null) {
                 return NotFound();
