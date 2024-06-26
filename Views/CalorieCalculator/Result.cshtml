@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Calorie Calculation Result";
+}
+
+<h1 class="text-center mb-4">Calorie Calculation Result</h1>
+
+<div class="row justify-content-center">
+    <div class="col-5">
+        <p>Your daily calorie intake should be: <strong>@ViewBag.DailyCalories</strong> calories per day</p>
+        <a href="@Url.Action("Index", "CalorieCalculator")" class="btn btn-primary">Back to Goals</a>
+    </div>
+</div>

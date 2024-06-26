@@ -1,0 +1,152 @@
+﻿@model IEnumerable<CalorieCountingApp.Models.FoodItem>
+
+@{
+    ViewData["Title"] = "Daily Calorie Intake";
+}
+
+<h1 class="text-center mb-5">Daily Calorie Intake</h1>
+
+<div class="row mb-3">
+    <div class="col-6">
+        <form asp-action="Index" method="get">
+            <div class="input-group">
+                <input type="search" name="searchString" value="@ViewBag.CurrentFilter" class="form-control" placeholder="Search by name" />
+                <button type="submit" class="btn btn-outline-primary">Search</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-6 text-end">
+        <button type="button" class="btn btn-danger me-2" id="removeAll">Remove All</button>
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#calculateModal">Calculate</button>
+    </div>
+</div>
+
+<form asp-action="Calculate" method="post">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.First().Name)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Calories)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Fats)</th>
+                <th>@Html.DisplayNameFor(model => model.First().Proteins)</th>
+                <th>Weight (g)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Calories</td>
+                    <td>@item.Fats</td>
+                    <td>@item.Proteins</td>
+                    <td>
+                        <input type="number" name="weights" class="form-control" min="0" />
+                        <input type="hidden" name="foodItemIds" value="@item.Id" />
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-primary add-item">Add</button>
+                        <button type="button" class="btn btn-danger remove-item d-none">Remove</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="modal fade" id="calculateModal" tabindex="-1" aria-labelledby="calculateModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="calculateModalLabel">Total Intake</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Total Calories: <span id="totalCalories">0</span> kcal</p>
+                    <p>Total Fats: <span id="totalFats">0</span> g</p>
+                    <p>Total Proteins: <span id="totalProteins">0</span> g</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var addButtons = document.querySelectorAll('.add-item');
+        var removeButtons = document.querySelectorAll('.remove-item');
+        var totalCalories = 0;
+        var totalFats = 0;
+        var totalProteins = 0;
+
+        addButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                var row = button.closest('tr');
+                var weightInput = row.querySelector('input[name="weights"]');
+                var weight = parseFloat(weightInput.value) || 0;
+                var calories = parseFloat(row.cells[1].innerText) || 0;
+                var fats = parseFloat(row.cells[2].innerText) || 0;
+                var proteins = parseFloat(row.cells[3].innerText) || 0;
+
+                totalCalories += (calories / 100) * weight;
+                totalFats += (fats / 100) * weight;
+                totalProteins += (proteins / 100) * weight;
+
+                document.getElementById('totalCalories').innerText = totalCalories.toFixed(2);
+                document.getElementById('totalFats').innerText = totalFats.toFixed(2);
+                document.getElementById('totalProteins').innerText = totalProteins.toFixed(2);
+
+                button.classList.add('d-none');
+                row.querySelector('.remove-item').classList.remove('d-none');
+                row.classList.add('table-success');
+            });
+        });
+
+        removeButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                var row = button.closest('tr');
+                var weightInput = row.querySelector('input[name="weights"]');
+                var weight = parseFloat(weightInput.value) || 0;
+                var calories = parseFloat(row.cells[1].innerText) || 0;
+                var fats = parseFloat(row.cells[2].innerText) || 0;
+                var proteins = parseFloat(row.cells[3].innerText) || 0;
+
+                totalCalories -= (calories / 100) * weight;
+                totalFats -= (fats / 100) * weight;
+                totalProteins -= (proteins / 100) * weight;
+
+                document.getElementById('totalCalories').innerText = totalCalories.toFixed(2);
+                document.getElementById('totalFats').innerText = totalFats.toFixed(2);
+                document.getElementById('totalProteins').innerText = totalProteins.toFixed(2);
+
+                weightInput.value = '';
+                button.classList.add('d-none');
+                row.querySelector('.add-item').classList.remove('d-none');
+                row.classList.remove('table-success');
+            });
+        });
+
+        document.getElementById('removeAll').addEventListener('click', function () {
+            totalCalories = 0;
+            totalFats = 0;
+            totalProteins = 0;
+
+            document.getElementById('totalCalories').innerText = totalCalories.toFixed(2);
+            document.getElementById('totalFats').innerText = totalFats.toFixed(2);
+            document.getElementById('totalProteins').innerText = totalProteins.toFixed(2);
+
+            addButtons.forEach(function (button) {
+                var row = button.closest('tr');
+                var weightInput = row.querySelector('input[name="weights"]');
+                weightInput.value = '';
+                button.classList.remove('d-none');
+                row.querySelector('.remove-item').classList.add('d-none');
+                row.classList.remove('table-success');
+            });
+        });
+    });
+</script>
+

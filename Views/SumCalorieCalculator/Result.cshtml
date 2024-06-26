@@ -1,0 +1,11 @@
+﻿@{
+    ViewData["Title"] = "Calorie Calculation Result";
+}
+
+<h1>Calorie Calculation Result</h1>
+
+<p>Total Calories: <strong>@ViewBag.TotalCalories</strong> kcal</p>
+<p>Total Fats: <strong>@ViewBag.TotalFats</strong> g</p>
+<p>Total Proteins: <strong>@ViewBag.TotalProteins</strong> g</p>
+
+<a href="@Url.Action("Index", "DailyIntake")" class="btn btn-primary">Back to Intake</a>

@@ -19,7 +19,13 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="FoodItem" asp-action="Index">Calories table</a>
+                            <a class="nav-link" asp-controller="FoodItem" asp-action="Index">Calories Table</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="CalorieCalculator" asp-action="Index">Calorie Calculator</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="SumCalorieCalculator" asp-action="Index">Daily Intake</a>
                         </li>
 
                         <a class="btn btn-outline-secondary position-absolute end-0 me-3" asp-controller="Admin" asp-action="Index">Admin</a>
@@ -35,7 +41,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted  p-3">
+    <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2024 - CalorieCountingApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
@@ -47,3 +53,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
+

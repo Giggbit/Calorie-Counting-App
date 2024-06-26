@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Calorie Calculator";
+}
+
+<h1 class="text-center mb-5">Choose your Plan</h1>
+
+<div class="row justify-content-center">
+    <div class="row">
+        <div class="col">
+            <div class="card" style="width: 18rem; height: 100%;">
+                <img src="/card-images/weight-loss.jpg" class="card-img-top card-img-custom" alt="Weight Loss">
+                <div class="card-body">
+                    <h5 class="card-title">Weight Loss</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a asp-controller="CalorieCalculator" asp-action="WeightLoss" class="btn btn-primary">Select</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card" style="width: 18rem; height: 100%;">
+                <img src="/card-images/weight-gain.jpg" class="card-img-top card-img-custom" alt="Weight Gain">
+                <div class="card-body">
+                    <h5 class="card-title">Weight Gain</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a asp-controller="CalorieCalculator" asp-action="WeightGain" class="btn btn-primary">Select</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card" style="width: 18rem; height: 100%;">
+                <img src="/card-images/weight-maintenance.jpg" class="card-img-top card-img-custom" alt="Weight Maintenance">
+                <div class="card-body">
+                    <h5 class="card-title">Weight Maintenance</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a asp-controller="CalorieCalculator" asp-action="WeightMaintenance" class="btn btn-primary">Select</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        height: 100%;
+    }
+
+    .card-img-custom {
+        height: 200px;
+        object-fit: cover;
+    }
+</style>

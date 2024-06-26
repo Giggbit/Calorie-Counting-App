@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Weight Maintenance";
+}
+
+<h1 class="text-center mb-5">Weight Maintenance</h1>
+
+<div class="row justify-content-center">
+    <div class="col-4">
+        <form asp-action="CalculateCalories" method="post">
+            <input type="hidden" name="goal" value="WeightMaintenance" />
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="weight">Weight (kg)</label>
+                <input type="number" class="form-control" id="weight" name="weight" required />
+            </div>
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="height">Height (cm)</label>
+                <input type="number" class="form-control" id="height" name="height" required />
+            </div>
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="age">Age</label>
+                <input type="number" class="form-control" id="age" name="age" required />
+            </div>
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="gender">Gender</label>
+                <select class="form-control" id="gender" name="gender" required>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Calculate</button>
+        </form>
+    </div>
+</div>
